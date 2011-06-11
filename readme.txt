@@ -6,6 +6,7 @@ Folder structure
 - api 						(Folder to upload to server where updates will be housed)
 -- .htaccess 				(set Options+Indexes to allow checking to work properly)
 -- index.php 				(holds code used to check request for new versions)
+-- download.php				(one-time download key generating/validating file)
 
 - plugin					(folder for adding plugin update checking)
 -- test-plugin-update 		(simple plugin folder to show how update functions work)

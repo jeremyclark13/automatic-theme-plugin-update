@@ -25,6 +25,8 @@ if (get_magic_quotes_gpc()) {
     unset($process);
 }
 
+
+
 //Create one time download link to secure zip file location
 if (stristr($user_agent, 'WordPress') == TRUE){
 	/*
@@ -35,12 +37,11 @@ if (stristr($user_agent, 'WordPress') == TRUE){
 	*
 	*/
 
-	//connect to the DB
-	
-/***********************
-DATABASE INFO
-************************/
-
+/**********************************************
+Uncomment Below Section to enable url masking
+**********************************************/
+/*REMOVE THIS LINE
+	//Database Info
 	$resDB = mysql_connect("DB_SERVER", "DB_USER", "DB_PASSWORD");
 	mysql_select_db("DB_NAME", $resDB);
 
@@ -67,7 +68,8 @@ DATABASE INFO
 	mysql_query("INSERT INTO downloads (downloadkey, file, expires) VALUES ('{$strKey}', 'supportbird.zip', '".(time()+(60*60*24*7))."')");
 
 	mysql_query("DELETE FROM downloads WHERE expires > '" .(time()+(60*60*24*14))."' ");
-  
+
+REMOVE THIS LINE*/ 
 }
 
 
@@ -77,7 +79,15 @@ $packages['theme'] = array(			//Replace theme with theme stylesheet slug that th
 		'1.0' => array(				//Array name should be set to current version of update
 			'version' => '1.0', 	//Current version available
 			'date' => '2010-04-10',	//Date version was released
-			'package' => 'http://url_to_your_site/theme.zip'  // The zip file of the theme update
+			/*
+			Remove line below if using one time download link 
+			*/
+			'package' => 'http://url_to_your_site/theme.zip',  // The zip file of the theme update
+			'author'  =>	'Author Name',		//Author of theme
+			'name' =>		'Theme Name',		//Name of theme
+			'requires'=>	'3.1',				//Wordpress version required
+			'tested' =>		'3.1',				//WordPress version tested up to
+			'screenshot_url'=>	'http://url_to_your_theme_site/screenshot.png'	//url of screenshot of theme
 			/*
 			Use below value if using the one time download link.  Point to location of download.php file on your server.
 			*/
@@ -198,7 +208,20 @@ if ($action == 'theme_update') {
 		print serialize($update_data);	
 }
 
-
+if ($action == 'theme_information') {	
+	$data = new stdClass;
+	
+	$data->slug = $args->slug;
+	$data->name = $latest_package['name'];	
+	$data->version = $latest_package['version'];
+	$data->last_updated = $latest_package['date'];
+	$data->download_link = $latest_package['package'];
+	$data->author = $latest_package['author'];
+	$data->requires = $latest_package['requires'];
+	$data->tested = $latest_package['tested'];
+	$data->screenshot_url = $latest_package['screenshot_url'];
+	print serialize($data);
+}
 
 function array_to_object($array = array()) {
 	if (empty($array) || !is_array($array))
