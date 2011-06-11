@@ -64,9 +64,6 @@ Uncomment Below Section to enable url masking
 	//get a unique download key
 	$strKey = createKey();
 
-	//insert the download record into the database
-	mysql_query("INSERT INTO downloads (downloadkey, file, expires) VALUES ('{$strKey}', 'supportbird.zip', '".(time()+(60*60*24*7))."')");
-
 	mysql_query("DELETE FROM downloads WHERE expires > '" .(time()+(60*60*24*14))."' ");
 
 REMOVE THIS LINE*/ 
@@ -83,15 +80,16 @@ $packages['theme'] = array(			//Replace theme with theme stylesheet slug that th
 			Remove line below if using one time download link 
 			*/
 			'package' => 'http://url_to_your_site/theme.zip',  // The zip file of the theme update
+						/*
+			Use below value if using the one time download link.  Point to location of download.php file on your server.
+			*/
+			//'package' => 'http://url_to_your_site/download.php?key=' . $strKey,
+			//'file_name' => 'theme.zip',	//File name of theme zip file
 			'author'  =>	'Author Name',		//Author of theme
 			'name' =>		'Theme Name',		//Name of theme
 			'requires'=>	'3.1',				//Wordpress version required
 			'tested' =>		'3.1',				//WordPress version tested up to
 			'screenshot_url'=>	'http://url_to_your_theme_site/screenshot.png'	//url of screenshot of theme
-			/*
-			Use below value if using the one time download link.  Point to location of download.php file on your server.
-			*/
-			//'package' => 'http://url_to_your_site/download.php?key=' . $strKey,
 		)
 	),
 	'info' => array(
@@ -111,11 +109,16 @@ $packages['plugin'] = array(				//Replace plugin with the plugin slug that updat
 			'homepage' => 'http://your_plugin_website',  // Site devoted to your plugin if available
 			'downloaded'=> '1000',  		// Number of times downloaded
 			'external' => '',  				// Unused
-			'package' => 'http://url_to_your_site/plugin.zip',  // The zip file of the plugin update
 			/*
 			Use below value if using the one time download link.  Point to location of download.php file on your server.
 			*/
 			//'package' => 'http://url_to_your_site/download.php?key=' . $strKey,
+			//'file_name' => 'plugin.zip',	//File name of theme zip file
+			/*
+			Remove line below if using one time download link 
+			*/
+			'package' => 'http://url_to_your_site/plugin.zip',  // The zip file of the plugin update
+
 			
 			'sections' => array(
 				/* Plugin Info sections tabs.  Each key will be used as the title of the tab, value is the contents of tab.
@@ -189,6 +192,9 @@ if ($action == 'plugin_information') {
 	$data->homepage = $latest_package['homepage'];
 	$data->downloaded = $latest_package['downloaded'];
 	$data->sections = $latest_package['sections'];
+	//insert the download record into the database
+	//Uncomment if using url masking
+	//mysql_query("INSERT INTO downloads (downloadkey, file, expires) VALUES ('{$strKey}', '{$latest_package['file_name']}', '".(time()+(60*60*24*7))."')");
 	print serialize($data);
 }
 
@@ -203,7 +209,9 @@ if ($action == 'theme_update') {
 	$update_data['package'] = $update_info->package;	
 	$update_data['new_version'] = $update_info->version;
 	$update_data['url'] = $packages[$args->slug]['info']['url'];
-		
+	//insert the download record into the database
+	//Uncomment if using url masking
+	//mysql_query("INSERT INTO downloads (downloadkey, file, expires) VALUES ('{$strKey}', '{$update_info->file_name}', '".(time()+(60*60*24*7))."')");		
 	if (version_compare($args->version, $latest_package['version'], '<'))
 		print serialize($update_data);	
 }
@@ -220,6 +228,9 @@ if ($action == 'theme_information') {
 	$data->requires = $latest_package['requires'];
 	$data->tested = $latest_package['tested'];
 	$data->screenshot_url = $latest_package['screenshot_url'];
+	//insert the download record into the database
+	//Uncomment if using url masking
+	//mysql_query("INSERT INTO downloads (downloadkey, file, expires) VALUES ('{$strKey}', '{$latest_package['file_name']}', '".(time()+(60*60*24*7))."')");
 	print serialize($data);
 }
 
