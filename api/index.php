@@ -169,10 +169,10 @@ if ($action == 'basic_check') {
 	$update_info = array_to_object($latest_package);
 	$update_info->slug = $args->slug;
 	
-	if (version_compare($args->version, $latest_package['version'], '<'))
+	if (version_compare($args->version, $latest_package['version'], '<')){
 		$update_info->new_version = $update_info->version;
-	
-	print serialize($update_info);
+		print serialize($update_info);
+	}	
 }
 
 
