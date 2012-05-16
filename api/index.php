@@ -2,6 +2,7 @@
 /*******
  Original Plugin & Theme API by Kaspars Dambis (kaspars@konstruktors.com)
  Modified by Jeremy Clark http://clark-technet.com
+ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=73N8G8UPGDG2Q
 *******/
 
 // Pull user agent  
@@ -64,6 +65,7 @@ Uncomment Below Section to enable url masking
 	//get a unique download key
 	$strKey = createKey();
 
+	// Deletes records over two weeks old
 	mysql_query("DELETE FROM downloads WHERE expires > '" .(time()+(60*60*24*14))."' ");
 
 REMOVE THIS LINE*/ 
@@ -203,8 +205,6 @@ if ($action == 'plugin_information') {
 
 if ($action == 'theme_update') {
 	$update_info = array_to_object($latest_package);
-	
-	//$update_data = new stdClass;
 	$update_data = array();
 	$update_data['package'] = $update_info->package;	
 	$update_data['new_version'] = $update_info->version;
@@ -218,7 +218,6 @@ if ($action == 'theme_update') {
 
 if ($action == 'theme_information') {	
 	$data = new stdClass;
-	
 	$data->slug = $args->slug;
 	$data->name = $latest_package['name'];	
 	$data->version = $latest_package['version'];

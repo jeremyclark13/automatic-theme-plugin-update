@@ -19,10 +19,11 @@ function aaa_result($res, $action, $args) {
 	print_r($res);
 	return $res;
 }
+// NOTE: All variables and functions will need to be prefixed properly to allow multiple plugins to be updated
 */
 
 
-$api_url = 'http://api.damb.is/';
+$api_url = 'http://url_to_api_server/';
 $plugin_slug = basename(dirname(__FILE__));
 
 
@@ -56,9 +57,9 @@ function check_for_plugin_update($checked_data) {
 
 
 // Take over the Plugin info screen
-add_filter('plugins_api', 'my_plugin_api_call', 10, 3);
+add_filter('plugins_api', 'plugin_api_call', 10, 3);
 
-function my_plugin_api_call($def, $action, $args) {
+function plugin_api_call($def, $action, $args) {
 	global $plugin_slug, $api_url;
 	
 	if ($args->slug != $plugin_slug)
@@ -69,7 +70,14 @@ function my_plugin_api_call($def, $action, $args) {
 	$current_version = $plugin_info->checked[$plugin_slug .'/'. $plugin_slug .'.php'];
 	$args->version = $current_version;
 	
-	$request_string = prepare_request($action, $args);
+	$request_string = array(
+			'body' => array(
+				'action' => $action, 
+				'request' => serialize($args),
+				'api-key' => md5(get_bloginfo('url'))
+			),
+			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
+		);
 	
 	$request = wp_remote_post($api_url, $request_string);
 	
@@ -84,19 +92,4 @@ function my_plugin_api_call($def, $action, $args) {
 	
 	return $res;
 }
-
-
-function prepare_request($action, $args) {
-	global $wp_version;
-	
-	return array(
-		'body' => array(
-			'action' => $action, 
-			'request' => serialize($args),
-			'api-key' => md5(get_bloginfo('url'))
-		),
-		'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
-	);	
-}
-
 ?>
