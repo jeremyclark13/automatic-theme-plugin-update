@@ -36,12 +36,18 @@ function check_for_plugin_update($checked_data) {
 	if (empty($checked_data->checked))
 		return $checked_data;
 	
-	$request_args = array(
+	$args = array(
 		'slug' => $plugin_slug,
 		'version' => $checked_data->checked[$plugin_slug .'/'. $plugin_slug .'.php'],
 	);
-	
-	$request_string = prepare_request('basic_check', $request_args);
+	$request_string = array(
+			'body' => array(
+				'action' => 'basic_check', 
+				'request' => serialize($args),
+				'api-key' => md5(get_bloginfo('url'))
+			),
+			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
+		);
 	
 	// Start checking for an update
 	$raw_response = wp_remote_post($api_url, $request_string);
