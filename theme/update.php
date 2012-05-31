@@ -56,9 +56,7 @@ function check_for_update($checked_data) {
 		),
 		'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
 	);
-	var_dump($send_for_check);
 	$raw_response = wp_remote_post($api_url, $send_for_check);
-        var_dump($raw_response);
 	if (!is_wp_error($raw_response) && ($raw_response['response']['code'] == 200))
 		$response = unserialize($raw_response['body']);
 
