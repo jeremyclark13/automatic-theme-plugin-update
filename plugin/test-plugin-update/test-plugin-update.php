@@ -11,6 +11,11 @@ Author URI: http://clark-technet.com
 
 /*
 // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
+// NOTE: The 
+//	if (empty($checked_data->checked))
+//		return $checked_data; 
+// lines will need to be commented in the check_for_plugin_update function as well.
+
 set_site_transient('update_plugins', null);
 
 // TEMP: Show which variables are being requested when query plugin API
@@ -33,6 +38,7 @@ add_filter('pre_set_site_transient_update_plugins', 'check_for_plugin_update');
 function check_for_plugin_update($checked_data) {
 	global $api_url, $plugin_slug;
 	
+	//Comment out these two lines during testing.
 	if (empty($checked_data->checked))
 		return $checked_data;
 	

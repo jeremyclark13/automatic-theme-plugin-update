@@ -2,7 +2,7 @@
 /*******
  Original Plugin & Theme API by Kaspars Dambis (kaspars@konstruktors.com)
  Modified by Jeremy Clark http://clark-technet.com
- Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=73N8G8UPGDG2Q
+ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SE9ZVJUS324UC
 *******/
 
 // Pull user agent  

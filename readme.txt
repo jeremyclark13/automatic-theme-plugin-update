@@ -1,8 +1,8 @@
 ## Automatic Theme & Plugin Updater for Self-Hosted Themes/Plugins
 
-**Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=73N8G8UPGDG2Q**
+** Support This: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SE9ZVJUS324UC**
 
-*Donations are always appreciated*
+*Any amount is always appreciated*
 
 
 ## General Info
