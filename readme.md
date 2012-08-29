@@ -11,21 +11,24 @@ For themes and plugins that can't be submitted to official WordPress repository,
 
 ### Folder structure
 * api (Folder to upload to server where updates will be housed)
-	* .htaccess (set Options+Indexes to allow checking to work properly)
-	* index.php (holds code used to check request for new versions)
-        * packages.php (file containing all info about plugins and themes)
-	* download.php (validates md5 key of date and package zip file)
-	* update (folder to hold all zip file updates for url masking - protected by .htaccess to disallow file listings)
+    * .htaccess (set Options+Indexes to allow checking to work properly)
+    * index.php (holds code used to check request for new versions)
+    * packages.php (file containing all info about plugins and themes)
+    * download.php (validates md5 key of date and package zip file)
+    * update (folder to hold all zip file updates for url masking - protected by .htaccess to disallow file listings)
+
 
 * update (default folder for holding theme and plugin zip files)
-        * .htaccess (prevents indexing and viewing of any zip files in directory)
+    * .htaccess (prevents indexing and viewing of any zip files in directory)
+
 
 * plugin (folder for adding plugin update checking)
-	* test-plugin-update (simple plugin folder to show how update functions work)
-		* test-plugin-update.php (example plugin that only checks for updates to server)
+    * test-plugin-update (simple plugin folder to show how update functions work)
+        * test-plugin-update.php (example plugin that only checks for updates to server)
+
 
 * theme (folder for theme update checking)
-	* update.php (file that can be included from functions.php of theme to check for updates)
+    * update.php (file that can be included from functions.php of theme to check for updates)
 	
 ---------------	
 	
