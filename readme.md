@@ -13,9 +13,13 @@ For themes and plugins that can't be submitted to official WordPress repository,
 * api (Folder to upload to server where updates will be housed)
 	* .htaccess (set Options+Indexes to allow checking to work properly)
 	* index.php (holds code used to check request for new versions)
-	* download.php (one-time download key generating/validating file)
-	* update (folder to hold all zip file updates for url masking)
-	
+        * packages.php (file containing all info about plugins and themes)
+	* download.php (validates md5 key of date and package zip file)
+	* update (folder to hold all zip file updates for url masking - protected by .htaccess to disallow file listings)
+
+* update (default folder for holding theme and plugin zip files)
+        * .htaccess (prevents indexing and viewing of any zip files in directory)
+
 * plugin (folder for adding plugin update checking)
 	* test-plugin-update (simple plugin folder to show how update functions work)
 		* test-plugin-update.php (example plugin that only checks for updates to server)
@@ -34,7 +38,7 @@ For themes and plugins that can't be submitted to official WordPress repository,
 
 ## Adding new versions
 
-Edit the index.php under api folder on your server.  Commented thoroughly throughout with sections that need to be changed to reflect themes/plugins that are to be updated.  
+Edit the packages.php under api folder on your server.  Commented thoroughly throughout with sections that need to be changed to reflect themes/plugins that are to be updated.  
 
 ## Adding additional themes/plugins
 
@@ -46,4 +50,4 @@ Child themes are now supported.  If the theme being updated is meant to be a par
 
 ## Securing Download location
 
-Now update file locations can be secured using a random download key generator.  A sql database is used to store random keys and a download.php file is used to check for keys and then allow download.  By default unsecured downloads are allowed.  To setup run the download_table.sql on an existing database or new database to create the download table, then edit the api/index.php and api/download.php and change the database info.  Then under the appropriate packages array remove the unsecured link and uncomment the secure link and edit the location.  The download.php also has the folder name at the top that needs to be edited to tell where the update files are stored.
+Downloads are now always secured by a md5 hash of the package file_name and timestamp of current date.  When downloading file current timestamp and timestamp of previous day are compared to key received from update request, if either match zip file is passed, and file can be downloaded. 
