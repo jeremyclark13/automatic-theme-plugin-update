@@ -36,7 +36,7 @@ $plugin_slug = basename(dirname(__FILE__));
 add_filter('pre_set_site_transient_update_plugins', 'check_for_plugin_update');
 
 function check_for_plugin_update($checked_data) {
-	global $api_url, $plugin_slug;
+	global $api_url, $plugin_slug, $wp_version;
 	
 	//Comment out these two lines during testing.
 	if (empty($checked_data->checked))
@@ -72,9 +72,9 @@ function check_for_plugin_update($checked_data) {
 add_filter('plugins_api', 'plugin_api_call', 10, 3);
 
 function plugin_api_call($def, $action, $args) {
-	global $plugin_slug, $api_url;
+	global $plugin_slug, $api_url, $wp_version;
 	
-	if ($args->slug != $plugin_slug)
+	if (isset($args->slug) && ($args->slug != $plugin_slug))
 		return false;
 	
 	// Get the current version
