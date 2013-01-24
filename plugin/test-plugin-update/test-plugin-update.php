@@ -74,7 +74,7 @@ add_filter('plugins_api', 'plugin_api_call', 10, 3);
 function plugin_api_call($def, $action, $args) {
 	global $plugin_slug, $api_url, $wp_version;
 	
-	if (isset($args->slug) && ($args->slug != $plugin_slug))
+	if (!isset($args->slug) || ($args->slug != $plugin_slug))
 		return false;
 	
 	// Get the current version

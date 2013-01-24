@@ -22,7 +22,7 @@ $packages['theme'] = array( //Replace theme with theme stylesheet slug that the 
 );
 
 // Plugin with update info
-$packages['plugin'] = array( //Replace plugin with the plugin slug that updates will be checking for
+$packages['test-plugin-update'] = array( //Replace plugin with the plugin slug that updates will be checking for
     'versions' => array(
         '1.0' => array( //Array name should be set to current version of update
             'version' => '1.0', //Current version available
