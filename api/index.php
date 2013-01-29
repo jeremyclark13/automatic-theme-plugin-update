@@ -25,7 +25,8 @@ if ( get_magic_quotes_gpc() ) {
     }
     unset( $process );
 }
-
+// make sure it's an array
+$packages = array();
 require_once('packages.php');
 
 //Create one time download link to secure zip file location
