@@ -26,6 +26,7 @@ $packages['test-plugin-update'] = array( //Replace plugin with the plugin slug t
     'versions' => array(
         '1.0' => array( //Array name should be set to current version of update
             'version' => '1.0', //Current version available
+            'name' => 'Plugin name', //Plugin name
             'date' => '2010-04-10', //Date version was released
             'author' => 'Author Name', //Author name - can be linked using html - <a href="http://link-to-site.com">Author Name</a>
             'requires' => '2.8', // WP version required for plugin
