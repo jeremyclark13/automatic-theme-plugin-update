@@ -31,6 +31,13 @@ function aaa_result($res, $action, $args) {
 $api_url = 'http://url_to_api_server/';
 $plugin_slug = basename(dirname(__FILE__));
 
+/** Enable my local themes and plugins repository FFS!!! */
+add_filter( 'http_request_host_is_external', 'allow_my_custom_host', 10, 3 );
+function allow_my_custom_host( $allow, $host, $url ) {
+	if ( $host == 'yourhost.com' )
+		$allow = true;
+	return $allow;
+}
 
 // Take over the update check
 add_filter('pre_set_site_transient_update_plugins', 'check_for_plugin_update');
