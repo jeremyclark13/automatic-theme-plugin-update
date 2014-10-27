@@ -9,8 +9,8 @@ if ( isset( $_GET['key'] ) ) {
         // loop over all the versions for each theme and plugin
         foreach ( $package['versions'] as $version ) {
             // md5 timestamp of current and previous day and the file name
-            $tod_md5 = md5( $version['file_name'] . mktime( 0, 0, 0, date( "m" ), date( "d" ), date( "Y" ) ) );
-            $yes_md5 = md5( $version['file_name'] . mktime( 0, 0, 0, date( "m" ), date( "d" ) - 1, date( "Y" ) ) );
+            $tod_md5 = md5( $version['file_name'] . mktime( 0, 0, 0, date( "n" ), date( "j" ), date( "Y" ) ) );
+            $yes_md5 = md5( $version['file_name'] . mktime( 0, 0, 0, date( "n" ), date( "j" ) - 1, date( "Y" ) ) );
             // test if the either of the md5 hashes match what was passed
             if ( $_GET['key'] == $tod_md5 || $_GET['key'] == $yes_md5 ) {
                 $download = $update_folder . $version['file_name'];

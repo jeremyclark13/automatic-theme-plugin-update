@@ -6,7 +6,7 @@ $packages['theme'] = array( //Replace theme with theme stylesheet slug that the 
             'version' => '1.0', //Current version available
             'date' => '2010-04-10', //Date version was released
             //theme.zip is the same as file_name
-            'package' => 'http://url_to_your_site/download.php?key=' . md5('theme.zip' . mktime(0,0,0,date("m"),date("d"),date("Y"))),
+            'package' => 'http://url_to_your_site/download.php?key=' . md5('theme.zip' . mktime(0,0,0,date("n"),date("j"),date("Y"))),
             //file_name is the name of the file in the update folder.
             'file_name' => 'theme.zip',	//File name of theme zip file
             'author' => 'Author Name', //Author of theme
@@ -34,7 +34,7 @@ $packages['test-plugin-update'] = array( //Replace plugin with the plugin slug t
             'downloaded' => '1000', // Number of times downloaded
             'external' => '', // Unused
             //plugin.zip is the same as file_name
-            'package' => 'http://url_to_your_site/download.php?key=' . md5('plugin.zip' . mktime(0,0,0,date("m"),date("d"),date("Y"))),
+            'package' => 'http://url_to_your_site/download.php?key=' . md5('plugin.zip' . mktime(0,0,0,date("n"),date("j"),date("Y"))),
             //file_name is the name of the file in the update folder.
             'file_name' => 'plugin.zip',
             'sections' => array(
