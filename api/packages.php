@@ -26,11 +26,12 @@ $packages['test-plugin-update'] = array( //Replace plugin with the plugin slug t
     'versions' => array(
         '1.0' => array( //Array name should be set to current version of update
             'version' => '1.0', //Current version available
+            'name' => 'Plugin name', //Plugin name
             'date' => '2010-04-10', //Date version was released
             'author' => 'Author Name', //Author name - can be linked using html - <a href="http://link-to-site.com">Author Name</a>
             'requires' => '2.8', // WP version required for plugin
             'tested' => '3.0.1', // WP version tested with
-            'homepage' => 'http://your_plugin_website', // Site devoted to your plugin if available
+            'plugin_homepage' => 'http://your_plugin_website', // Site devoted to your plugin if available
             'downloaded' => '1000', // Number of times downloaded
             'external' => '', // Unused
             //plugin.zip is the same as file_name

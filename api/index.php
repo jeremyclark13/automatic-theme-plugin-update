@@ -58,6 +58,7 @@ if ( stristr( $user_agent, 'WordPress' ) == TRUE ) {
         $data = new stdClass;
 
         $data->slug = $args->slug;
+        $data->name = $latest_package['name'];
         $data->version = $latest_package['version'];
         $data->last_updated = $latest_package['date'];
         $data->download_link = $latest_package['package'];
