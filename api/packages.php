@@ -25,6 +25,7 @@ $packages['theme'] = array( //Replace theme with theme stylesheet slug that the 
 $packages['test-plugin-update'] = array( //Replace plugin with the plugin slug that updates will be checking for
     'versions' => array(
         '1.0' => array( //Array name should be set to current version of update
+            'name' => 'Plugin Name', //Name of plugin
             'version' => '1.0', //Current version available
             'date' => '2010-04-10', //Date version was released
             'author' => 'Author Name', //Author name - can be linked using html - <a href="http://link-to-site.com">Author Name</a>
