@@ -68,6 +68,7 @@ if ( stristr( $user_agent, 'WordPress' ) == TRUE ) {
         $data->homepage = $latest_package['homepage'];
         $data->downloaded = $latest_package['downloaded'];
         $data->sections = $latest_package['sections'];
+        $data->name = $latest_package['name'];
         print serialize( $data );
     }
 
